@@ -8,46 +8,50 @@ router.route('/');
 
 // GETS ENTIRE CATALOG OF PRODUCTS AND INFORMATION
 router.get('/', (req, res) => {
+  let allProductsArr = productsDb.all();
+  console.log(allProductsArr);
+  
   res.send(productsDb.all());
 });
 
 // GETS ONE SPECIFIC PRODUCT'S INFORMATION
 // IF IT FAILS, IT RETURNS ENTIRE CATALOG
-router.get('/*', (req, res) => {
-  let productId = parseFloat(req.url.slice(1, req.url.length));
-  if (productId) {
-    res.send(productsDb.getProduct(req.url));
-  } else {
-    res.send(productsDb.all());
-  };
+router.get('/:id', (req, res) => {
+  console.log(req.params.id)
+  const productId = req.params.id
+  res.send(productsDb.getProduct(productId));
+
+  // this uses '/*'
+  // let productId = parseFloat(req.url.slice(1, req.url.length));
+  // if (productId) {
+  //   res.send(productsDb.getProduct(req.url));
+  // } else {
+  //   res.send(productsDb.all());
+  // };
 });
 
 // ADDS A PRODUCT+INFORMATION TO THE CATALOG
 // BRINGS UP ENTIRE CATALOG AFTER ADDING A PRODUCT
 router.post('/', (req, res) => {
   const productBody = req.body;
-  console.log(req.body);
-  console.log(productBody.name);
-  console.log(productBody.price);
-  console.log(productBody.inventory);
   productsDb.addProduct(productBody);
   res.send(productsDb.all());
 });
 
 // FINDS A SPECIFIC PRODUCT AND EDITS THE CONTENTS
-router.put('/*', (req, res) => {
+router.put('/:id', (req, res) => {
   const productBody = req.body;
-  let productId = parseFloat(req.url.slice(1, req.url.length));
+  const productId = req.params.id
   if (productId) {
-    res.send(productsDb.editProduct(req.url, productBody));
+    res.send(productsDb.editProduct(productId, productBody));
   };
 });
 
 // FINDS A SPECIFIC PRODUCT AND DELETES IT FROM THE ARRAY
-router.delete('/*', (req, res) => {
-  let productId = parseFloat(req.url.slice(1, req.url.length));
+router.delete('/:id', (req, res) => {
+  const productId = req.params.id;
   if (productId) {
-    res.send(productsDb.deleteProduct(req.url));
+    res.send(productsDb.deleteProduct(productId));
   };
 });
 

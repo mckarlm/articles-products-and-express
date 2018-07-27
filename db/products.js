@@ -11,7 +11,7 @@ function addProduct(product) {
 };
 
 function getProduct(id) {
-  num = parseFloat(id.slice(1, id.length));
+  num = parseFloat(id);
   for (let i = 0; i < products.length; i++) {
     if (typeof num === 'number' && products[i].id === num) {
       return products[i];
@@ -20,7 +20,7 @@ function getProduct(id) {
 }
 
 function editProduct(id, productInfo) {
-  num = parseFloat(id.slice(1, id.length));
+  num = parseFloat(id);
   for (let i = 0; i < products.length; i++) {
     if (typeof num === 'number' && products[i].id === num) {
       products[i].name = productInfo.name;
@@ -32,7 +32,7 @@ function editProduct(id, productInfo) {
 }
 
 function deleteProduct(id) {
-  num = parseFloat(id.slice(1, id.length));
+  num = parseFloat(id);
   for (let i = 0; i < products.length; i++) {
     if (typeof num === 'number' && products[i].id === num) {
       products.splice(i, 1);
