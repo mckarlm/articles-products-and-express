@@ -4,7 +4,7 @@ const productsDb = require('../db/products');
 
 router.route('/');
 // Please remember to fix so it renders
-// remember to implement some sort of res.redirect when appropriate
+// remember to implement some sort of res.redirect whenever appropriate
 
 // GETS ENTIRE CATALOG OF PRODUCTS AND INFORMATION
 router.get('/', (req, res) => {
@@ -44,7 +44,7 @@ router.put('/*', (req, res) => {
 });
 
 // FINDS A SPECIFIC PRODUCT AND DELETES IT FROM THE ARRAY
-router.delete('/*', (req, res)=>{
+router.delete('/*', (req, res) => {
   let productId = parseFloat(req.url.slice(1, req.url.length));
   if (productId) {
     res.send(productsDb.deleteProduct(req.url));

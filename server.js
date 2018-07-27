@@ -1,6 +1,6 @@
 const express = require('express');
-const handlebars = require('express-handlebars');
 const bodyparser = require('body-parser');
+const handlebars = require('express-handlebars');
 const productsRoute = require('./routes/products');
 const articlesRoute = require('./routes/articles');
 const productsDb = require('./db/products');
@@ -17,6 +17,7 @@ app.engine('.hbs', handlebars({
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 app.use('/products', productsRoute);
+
 
 //wild card, error catch, listener in top-down order
 
