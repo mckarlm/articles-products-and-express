@@ -4,10 +4,14 @@
   "description": "Let the **tests drive your development** or write your tests after. The choice is up to you! As for the testing tools use:\r   - [mocha](https://mochajs.org/)\r   - [chai](https://chaijs.com/)\r   - [supertest](https://github.com/visionmedia/supertest)\r     - [supertest is built upon `superagent` so these docs will be helpful as well](https://github.com/visionmedia/superagent)",
   "main": "server.js",
   "dependencies": {
+    "chai": "^4.1.2",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "mocha": "^5.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "supertest": "^3.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
